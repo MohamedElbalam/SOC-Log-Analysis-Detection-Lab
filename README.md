@@ -1,7 +1,5 @@
 # SOC-Log-Analysis-Detection-Lab
-Demonstrate attacks on the computer Network and capture all the traffic and analyze it
-# SOC Log Analysis & Detection Lab
-
+Demonstrate attacks on the computer Network and capture all the traffic and analyze it.
 This project simulates a real Security Operations Center (SOC) workflow.  
 It demonstrates skills in:
 
