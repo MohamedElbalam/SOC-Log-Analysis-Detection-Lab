@@ -16,3 +16,6 @@ This environment is built on a Windows VM with Sysmon installed and logs forward
 
 ## Project Structure
 
+**main issues & fixes:**
+    - installing linux => never strated after first shutdown? 
+    
