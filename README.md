@@ -16,6 +16,9 @@ This environment is built on a Windows VM with Sysmon installed and logs forward
 
 ## Project Structure
 
+**machines architectures**
+    - for each machine with security concern use seperate storage for testing and labs
+    - snapchats
 **main issues & fixes:**
     - installing linux => never strated after first shutdown? 
     
