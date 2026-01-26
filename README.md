@@ -13,12 +13,16 @@ It demonstrates skills in:
 This environment is built on a Windows VM with Sysmon installed and logs forwarded to a SIEM.
 
 ---
+Tasks for the lab:
+    -take snapchats of useful machines
+    -install win-server, security-onion os and pfsense
 
 ## Project Structure
 
 **machines architectures**
     - for each machine with security concern use seperate storage for testing and labs
     - snapchats
+    -resizing window issue for linux => fix: install qeum-kvm and virt-viewer
 **main issues & fixes:**
     - installing linux => never strated after first shutdown? 
     
