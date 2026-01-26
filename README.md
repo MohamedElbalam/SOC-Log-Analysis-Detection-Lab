@@ -22,7 +22,9 @@ Tasks for the lab:
 **machines architectures**
     - for each machine with security concern use seperate storage for testing and labs
     - snapchats
-    -resizing window issue for linux => fix: install qeum-kvm and virt-viewer
+    -resizing window issue for linux 
+        => fix: using hardware: DISPLAY: SPICE xql machine:q35 wayland(modern display server protocol) GUI instead of xfce x11             protocol all with spice-vdagent and xserver-xorg-video-qxl 
+            command: sudo apt install -y spice-vdagent xserver-xorg-video-qxl
 **main issues & fixes:**
     - installing linux => never strated after first shutdown? 
-    
+    modern display server protocol
