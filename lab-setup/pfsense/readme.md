@@ -9,7 +9,8 @@
        - it is proxmox network miss-configurations   
     Fixed pathes ideas:
       -I am thinking since my proxmox and my host on the same network. I checked my network with ip a and my vmb1 is down. So if I bring vmbr1 up could fix it?
-          - yes indeed vmbr1 down is an issue so run commands: => ip link set eno1 up, ip link set vmbr1 up
+          - No, vmbr1 down not an issue
+          - Just chhoose 
 
 **Learning topics:**
   - what if my proxmox and my host are on two different subnet mask?
