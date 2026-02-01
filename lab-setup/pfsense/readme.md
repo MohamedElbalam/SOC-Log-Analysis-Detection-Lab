@@ -1,7 +1,9 @@
 
 **pfsense setup:**
   -it is a linux based firewall using BSD software that is installed on the network to act as router
-  - It sets between the MAN internet and LAN network for the lab 
+  - It sets between the MAN internet and LAN network for the lab
+  - install qemu-guest-agent for pfsense => inside pfsense shell command => pkg install -y qemu-guest-agent
+  - in pfsense shell edit for qemu-guest-agent => echo 'qemu_guest_agent_enable="YES"' >> /etc/rc.conf.local
 **Issues:**
   - network installation error:
     - what is it? I cant pass through setting the LAN network.
