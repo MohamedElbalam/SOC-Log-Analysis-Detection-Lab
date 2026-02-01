@@ -4,6 +4,8 @@
   - It sets between the MAN internet and LAN network for the lab
   - install qemu-guest-agent for pfsense => inside pfsense shell command => pkg install -y qemu-guest-agent
   - in pfsense shell edit for qemu-guest-agent => echo 'qemu_guest_agent_enable="YES"' >> /etc/rc.conf.local
+  - in order for agent to talk ot t430 proxmox enable => echo 'virtio_console_load="YES"' >> /boot/loader.conf.local
+
 **Issues:**
   - network installation error:
     - what is it? I cant pass through setting the LAN network.
