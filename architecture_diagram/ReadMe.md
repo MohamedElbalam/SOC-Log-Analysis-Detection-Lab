@@ -43,4 +43,4 @@ The following diagram illustrates the architecture of my security lab setup. It 
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/home-lab-architecture.git
+   git clone https://github.com/MohamedElbalam/home-lab-architecture.git
