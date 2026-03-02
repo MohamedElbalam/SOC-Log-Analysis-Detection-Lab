@@ -7,7 +7,9 @@ This repository showcases the architecture of my home lab, designed for security
 
 The following diagram illustrates the architecture of my security lab setup. It includes two networks: an **Attacker Network** (for simulating attacks) and a **Victim Network** (with different operating systems for testing). The traffic between these networks is monitored by **Security Onion** for detection and analysis.
 
-![Architecture Diagram](images/architecture-diagram.png)
+![SOC-Log-Analysis-Detection-Lab/architecture_diagram](images/lab-acrchitecture.drawio.png)       
+
+
 
 ## Components of the Lab
 
