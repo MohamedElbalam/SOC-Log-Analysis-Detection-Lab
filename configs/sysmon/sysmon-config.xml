@@ -1,0 +1,123 @@
+<Sysmon schemaversion="4.90">
+  <!-- Sysmon configuration for SOC Detection Lab -->
+  <!-- Based on SwiftOnSecurity sysmon-config with lab-specific additions -->
+  <!-- https://github.com/SwiftOnSecurity/sysmon-config -->
+
+  <HashAlgorithms>SHA256,IMPHASH</HashAlgorithms>
+  <CheckRevocation />
+
+  <EventFiltering>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 1 — Process Create
+         Log all process creation. Exclude high-volume, known-good processes.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <ProcessCreate onmatch="exclude">
+      <!-- Exclude noisy, known-good system processes -->
+      <Image condition="is">C:\Windows\System32\taskhostw.exe</Image>
+      <Image condition="is">C:\Windows\System32\backgroundTaskHost.exe</Image>
+    </ProcessCreate>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 2 — File Creation Time Changed (timestomping indicator)
+         ══════════════════════════════════════════════════════════════════════ -->
+    <FileCreateTime onmatch="include">
+      <TargetFilename condition="contains">\Downloads\</TargetFilename>
+      <TargetFilename condition="contains">\Temp\</TargetFilename>
+      <TargetFilename condition="end with">.exe</TargetFilename>
+      <TargetFilename condition="end with">.dll</TargetFilename>
+      <TargetFilename condition="end with">.ps1</TargetFilename>
+    </FileCreateTime>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 3 — Network Connection
+         Log outbound connections from high-risk processes.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <NetworkConnect onmatch="include">
+      <Image condition="end with">powershell.exe</Image>
+      <Image condition="end with">cmd.exe</Image>
+      <Image condition="end with">mshta.exe</Image>
+      <Image condition="end with">wscript.exe</Image>
+      <Image condition="end with">cscript.exe</Image>
+      <Image condition="end with">regsvr32.exe</Image>
+      <Image condition="end with">rundll32.exe</Image>
+      <Image condition="end with">schtasks.exe</Image>
+      <Image condition="end with">nc.exe</Image>
+      <Image condition="end with">python.exe</Image>
+    </NetworkConnect>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 5 — Process Terminated
+         ══════════════════════════════════════════════════════════════════════ -->
+    <ProcessTerminate onmatch="exclude" />
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 7 — Image Loaded (DLL load)
+         Only log when unsigned or from suspicious paths.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <ImageLoad onmatch="include">
+      <Signed condition="is">false</Signed>
+      <ImageLoaded condition="contains">\Temp\</ImageLoaded>
+      <ImageLoaded condition="contains">\Downloads\</ImageLoaded>
+      <ImageLoaded condition="contains">\AppData\</ImageLoaded>
+    </ImageLoad>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 8 — CreateRemoteThread (process injection indicator)
+         Log all, exclude known-good sources.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <CreateRemoteThread onmatch="exclude">
+      <!-- Known-good: browser GPU processes, AV -->
+      <SourceImage condition="contains">Google\Chrome</SourceImage>
+      <SourceImage condition="contains">MsMpEng.exe</SourceImage>
+    </CreateRemoteThread>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 10 — ProcessAccess (LSASS access — Mimikatz indicator)
+         ══════════════════════════════════════════════════════════════════════ -->
+    <ProcessAccess onmatch="include">
+      <TargetImage condition="end with">lsass.exe</TargetImage>
+      <TargetImage condition="end with">winlogon.exe</TargetImage>
+    </ProcessAccess>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 11 — File Created
+         Log files created in high-risk locations.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <FileCreate onmatch="include">
+      <TargetFilename condition="contains">\Temp\</TargetFilename>
+      <TargetFilename condition="contains">\Downloads\</TargetFilename>
+      <TargetFilename condition="contains">\AppData\Roaming\</TargetFilename>
+      <TargetFilename condition="end with">.exe</TargetFilename>
+      <TargetFilename condition="end with">.dll</TargetFilename>
+      <TargetFilename condition="end with">.ps1</TargetFilename>
+      <TargetFilename condition="end with">.bat</TargetFilename>
+      <TargetFilename condition="end with">.vbs</TargetFilename>
+    </FileCreate>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 12, 13, 14 — Registry Operations
+         Monitor registry keys commonly abused for persistence.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <RegistryEvent onmatch="include">
+      <TargetObject condition="contains">SOFTWARE\Microsoft\Windows\CurrentVersion\Run</TargetObject>
+      <TargetObject condition="contains">SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce</TargetObject>
+      <TargetObject condition="contains">SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</TargetObject>
+      <TargetObject condition="contains">SYSTEM\CurrentControlSet\Services</TargetObject>
+      <TargetObject condition="contains">SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run</TargetObject>
+    </RegistryEvent>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         Event ID 22 — DNS Query
+         Log DNS lookups from high-risk processes.
+         ══════════════════════════════════════════════════════════════════════ -->
+    <DnsQuery onmatch="include">
+      <Image condition="end with">powershell.exe</Image>
+      <Image condition="end with">cmd.exe</Image>
+      <Image condition="end with">mshta.exe</Image>
+      <Image condition="end with">wscript.exe</Image>
+      <Image condition="end with">cscript.exe</Image>
+    </DnsQuery>
+
+  </EventFiltering>
+</Sysmon>

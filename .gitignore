@@ -1,0 +1,95 @@
+# ─── VM & Hypervisor Artifacts ──────────────────────────────────────────────
+*.vmdk
+*.vmx
+*.vmxf
+*.vmsd
+*.nvram
+*.vmem
+*.vmsn
+*.vmss
+*.vhd
+*.vhdx
+*.qcow2
+*.iso
+*.ova
+*.ovf
+*.vmwarevm/
+
+# Proxmox
+*.backup
+*.vma
+*.vma.gz
+*.tar.zst
+
+# ─── Log Files ───────────────────────────────────────────────────────────────
+*.log
+*.evtx
+logs/
+*.pcap
+*.pcapng
+*.cap
+
+# ─── Secrets & Credentials ───────────────────────────────────────────────────
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+.env
+.env.*
+secrets/
+credentials/
+*password*
+*passwd*
+*secret*
+*token*
+api_keys.txt
+*.kdbx
+
+# ─── Splunk ──────────────────────────────────────────────────────────────────
+splunk/var/
+*.spl
+*.tgz
+
+# ─── OS Files ────────────────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.nfs*
+
+# ─── Editor & IDE ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# ─── Reports with raw data ───────────────────────────────────────────────────
+# Commit only sanitized report templates, not raw evidence exports
+reports/raw/
+results/raw/
