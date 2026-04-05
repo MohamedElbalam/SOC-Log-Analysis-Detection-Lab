@@ -1,0 +1,88 @@
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# VM / Hypervisor artifacts
+*.vmdk
+*.vmx
+*.vmxf
+*.vmsd
+*.nvram
+*.vmem
+*.vswp
+*.vmss
+*.vbox
+*.vdi
+*.qcow2
+*.iso
+
+# Sensitive data - NEVER commit these
+*.key
+*.pem
+*.pfx
+*.p12
+*.crt
+*.csr
+passwords.txt
+credentials.txt
+secrets.*
+*.env
+.env.*
+
+# Log files (raw/unsanitized)
+logs/*.log
+logs/*.pcap
+logs/*.cap
+logs/*.evtx
+*.pcap
+*.cap
+*.evtx
+
+# Splunk artifacts
+*.spl
+splunk/var/
+splunk/etc/passwd
+
+# Temporary and editor files
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Archives
+*.zip
+*.tar.gz
+*.tar.bz2
+*.7z
+*.rar
+
+# Keep these directories tracked even if empty
+!logs/.gitkeep
+!configs/.gitkeep
+!screenshots/.gitkeep

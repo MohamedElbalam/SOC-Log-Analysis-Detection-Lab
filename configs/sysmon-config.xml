@@ -1,0 +1,79 @@
+<!--
+  Sysmon Configuration for SOC Detection Lab
+  Based on SwiftOnSecurity sysmon-config with lab-specific customizations
+  https://github.com/SwiftOnSecurity/sysmon-config
+
+  Usage:
+    Install:  Sysmon64.exe -accepteula -i sysmon-config.xml
+    Update:   Sysmon64.exe -c sysmon-config.xml
+    Uninstall: Sysmon64.exe -u
+
+  Event IDs captured:
+    1  - Process creation
+    3  - Network connection
+    7  - Image loaded (DLL)
+    8  - CreateRemoteThread
+    10 - ProcessAccess (LSASS monitoring)
+    11 - FileCreate
+    12 - RegistryEvent (key/value create/delete)
+    13 - RegistryEvent (value set)
+    17 - PipeEvent (created)
+    18 - PipeEvent (connected)
+    22 - DNSEvent
+-->
+
+<Sysmon schemaversion="4.82">
+  <EventFiltering>
+
+    <!-- Event ID 1: Process Creation -->
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="exclude">
+        <!-- Exclude noisy, known-good processes -->
+        <Image condition="is">C:\Windows\System32\conhost.exe</Image>
+        <Image condition="is">C:\Windows\System32\wermgr.exe</Image>
+        <Image condition="end with">svchost.exe</Image>
+      </ProcessCreate>
+    </RuleGroup>
+
+    <!-- Event ID 3: Network Connection -->
+    <RuleGroup name="" groupRelation="or">
+      <NetworkConnect onmatch="include">
+        <!-- Capture all outbound connections for lab analysis -->
+        <DestinationPort condition="is">4444</DestinationPort>
+        <DestinationPort condition="is">4445</DestinationPort>
+        <DestinationPort condition="is">80</DestinationPort>
+        <DestinationPort condition="is">443</DestinationPort>
+        <DestinationPort condition="is">445</DestinationPort>
+        <DestinationPort condition="is">3389</DestinationPort>
+      </NetworkConnect>
+    </RuleGroup>
+
+    <!-- Event ID 10: ProcessAccess - Critical for LSASS monitoring -->
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+        <TargetImage condition="end with">lsass.exe</TargetImage>
+      </ProcessAccess>
+    </RuleGroup>
+
+    <!-- Event ID 11: File Creation -->
+    <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename condition="contains">\Temp\</TargetFilename>
+        <TargetFilename condition="end with">.exe</TargetFilename>
+        <TargetFilename condition="end with">.ps1</TargetFilename>
+        <TargetFilename condition="end with">.bat</TargetFilename>
+        <TargetFilename condition="end with">.vbs</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+
+    <!-- Event ID 22: DNS Query -->
+    <RuleGroup name="" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+        <QueryName condition="end with">.microsoft.com</QueryName>
+        <QueryName condition="end with">.windows.com</QueryName>
+        <QueryName condition="end with">.windowsupdate.com</QueryName>
+      </DnsQuery>
+    </RuleGroup>
+
+  </EventFiltering>
+</Sysmon>
