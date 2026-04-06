@@ -1,0 +1,27 @@
+# Ignore OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Ignore large binary files that don't belong in git
+*.pcap
+*.pcapng
+*.cap
+*.raw
+*.dmp
+
+# Ignore actual screenshot image files — add manually when needed
+# (comment this out if you want to track screenshots)
+# screenshots/**/*.png
+# screenshots/**/*.jpg
+
+# Python
+__pycache__/
+*.pyc
+
+# Build artifacts
+*.o
+*.exe
+*.out
