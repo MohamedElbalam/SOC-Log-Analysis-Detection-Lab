@@ -1,0 +1,56 @@
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Sensitive / credential files
+*.key
+*.pem
+*.pfx
+*.p12
+*.crt
+*.env
+.env*
+secrets.yml
+secrets.yaml
+
+# Large binary / capture files
+*.pcap
+*.pcapng
+*.cap
+*.evtx
+
+# Logs
+*.log
+logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+/tmp/
