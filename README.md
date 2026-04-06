@@ -1,6 +1,6 @@
 ## SOC-Log-Analysis-Detection-Lab
 
-Demonstrate attacks on the computer Network and capture all the traffic and analyze it.
+Demonstrate attacks on the computer network and capture all the traffic and analyze it.
 This project simulates a real Security Operations Center (SOC) workflow.  
 It demonstrates skills in:
 
@@ -13,16 +13,14 @@ It demonstrates skills in:
 
 This environment is built on a Windows VM with Sysmon installed and logs forwarded to a SIEM.
 
-Tasks for the lab:
+## Lab Tasks
 
-    -take snapchats of useful machines
-    -install win-server, security-onion os and pfsense
+- Take snapshots of useful machines
+- Install Windows Server, Security Onion OS, and pfSense
 
 ## Project Structure
 
-**machines architectures**
+**Machine Architectures**
 
-    - for each machine with security concern use seperate storage for testing and labs
-    - snapchats
-
-
+- For each machine with security concerns, use separate storage for testing and labs
+- Create snapshots for each configuration
