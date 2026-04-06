@@ -1,26 +1,30 @@
-## SOC-Log-Analysis-Detection-Lab
+# SOC Log Analysis Detection Lab
 
-Demonstrate attacks on the computer network and capture all the traffic and analyze it.
-This project simulates a real Security Operations Center (SOC) workflow.  
-It demonstrates skills in:
+## Overview
+The SOC Log Analysis Detection Lab is designed for security professionals to learn more about log analysis and detection strategies. This repository contains multiple directories, each serving a specific purpose in the context of log analysis and cybersecurity.
 
-- Log collection (Sysmon)
-- Log analysis (Splunk or Wazuh)
-- Attack simulation (process injection, Mimikatz, PowerShell abuse)
-- Detection engineering (custom Splunk queries)
-- Incident investigation
-- Professional reporting
+## Directory Structure
 
-This environment is built on a Windows VM with Sysmon installed and logs forwarded to a SIEM.
+### 1. **data**  
+Contains sample log files used for analysis. These logs can be used to practice detection techniques and understand different log formats.
 
-## Lab Tasks
+### 2. **scripts**  
+Holds various scripts for processing and analyzing log files. These scripts are crucial for automating detection processes and can be customized based on specific requirements.
 
-- Take snapshots of useful machines
-- Install Windows Server, Security Onion OS, and pfSense
+### 3. **configs**  
+Includes configuration files for different tools used in the lab. This helps in standardizing settings across various environments and ensuring consistent results.
 
-## Project Structure
+### 4. **docs**  
+This directory contains documentation related to the setup, usage, and best practices for working with the SOC Log Analysis Detection Lab. Users can refer to these documents for guidance.
 
-**Machine Architectures**
+### 5. **tests**  
+Contains unit tests to ensure the integrity and functionality of the scripts within the repository. Testing is vital for maintaining code quality and reliability.
 
-- For each machine with security concerns, use separate storage for testing and labs
-- Create snapshots for each configuration
+## Getting Started
+To get started with the SOC Log Analysis Detection Lab, clone the repository and navigate through the directories to familiarize yourself with the contents. Follow the instructions in the **docs** directory for detailed setup guidance.
+
+## Contribution
+Contributions are welcome! Please check the **docs** directory for guidelines on contributing to the repository.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
