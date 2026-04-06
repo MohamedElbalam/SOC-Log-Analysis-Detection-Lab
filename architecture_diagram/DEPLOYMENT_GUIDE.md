@@ -166,6 +166,9 @@ For Kioptrix Linux:
 #### Sysmon (on each Windows victim)
 
 ```powershell
+# Create temp directory if it doesn't exist
+New-Item -ItemType Directory -Path C:\Temp -Force
+
 # Download Sysmon
 Invoke-WebRequest -Uri https://download.sysinternals.com/files/Sysmon.zip -OutFile C:\Temp\Sysmon.zip
 Expand-Archive C:\Temp\Sysmon.zip -DestinationPath C:\Temp\Sysmon
